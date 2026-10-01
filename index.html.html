@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>یه سورپرایز برای set1_tk 🎁</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#2b1055;--bg2:#7597de;--ink:#fff;--box:#ff4d8d;--box2:#d9246a;--rib:#ffd23f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--ink);overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;user-select:none;-webkit-tap-highlight-color:transparent}
+#app{width:100%;max-width:480px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:18px}
+#msg{min-height:110px;font-size:clamp(18px,5vw,24px);font-weight:700;line-height:1.9;display:flex;align-items:center;justify-content:center;transition:.3s}
+#msg.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+#stage{position:relative;width:min(70vw,260px);height:min(70vw,260px);cursor:pointer}
+.base{position:absolute;bottom:0;left:4%;width:92%;height:62%;background:var(--box);border-radius:10px;box-shadow:0 14px 30px #0005}
+.lid{position:absolute;top:14%;left:0;width:100%;height:28%;background:var(--box2);border-radius:10px;transition:transform .9s ease-in,opacity .9s;z-index:2}
+.rib-v{position:absolute;bottom:0;left:calc(50% - 15px);width:30px;height:62%;background:var(--rib);z-index:1}
+.rib-v2{position:absolute;top:14%;left:calc(50% - 15px);width:30px;height:28%;background:var(--rib);z-index:3;transition:transform .9s ease-in,opacity .9s}
+.bow{position:absolute;top:-2%;width:100%;text-align:center;font-size:56px;z-index:4;transition:transform .9s ease-in,opacity .9s}
+.tape{position:absolute;z-index:5;height:22px;width:90px;background:rgba(255,255,255,.75);border:1px dashed #fff;border-radius:3px;transition:transform .5s,opacity .5s}
+.t1{top:30%;left:-6px;transform:rotate(-20deg)}.t2{top:34%;right:-6px;transform:rotate(18deg)}
+.t3{top:62%;left:0;transform:rotate(12deg)}.t4{top:68%;right:0;transform:rotate(-14deg)}
+.tape.gone{opacity:0;transform:translateY(-70px) rotate(90deg)!important}
+.shake{animation:sh .4s}
+@keyframes sh{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.cutline{position:absolute;z-index:6;top:36%;left:-8%;width:116%;border-top:4px dashed #fff;display:none}
+.cutline i{position:absolute;top:-4px;right:0;height:4px;width:0;background:var(--bg1)}
+.scis{position:absolute;z-index:7;top:calc(36% - 26px);right:-12%;font-size:44px;display:none;transform:scaleX(-1);transition:right .35s;filter:drop-shadow(0 3px 4px #0006)}
+.open .lid,.open .rib-v2,.open .bow{transform:translateY(-140px) rotate(-18deg);opacity:0}
+#btn{display:none;padding:12px 28px;font:900 18px Vazirmatn,Tahoma,sans-serif;border:0;border-radius:30px;background:var(--rib);color:#3a2a00;cursor:pointer;box-shadow:0 6px 0 #b8941f}
+#btn:active{transform:translateY(4px);box-shadow:0 2px 0 #b8941f}
+#white{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity 1.6s;z-index:50}
+#white.on{opacity:1;pointer-events:all}
+#final{position:fixed;inset:0;z-index:60;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;background:#fff;color:#7a1244;text-align:center;overflow:hidden}
+#final.show{display:flex}
+#final h1{margin:0;font-size:clamp(26px,8vw,42px);font-weight:900;animation:pop .9s both}
+#final p{margin:0;max-width:420px;font-size:clamp(16px,4.4vw,20px);line-height:2;font-weight:700;animation:pop 1.2s .4s both}
+.bq{font-size:clamp(80px,26vw,130px);animation:grow 1.4s cubic-bezier(.2,1.6,.4,1) both;filter:drop-shadow(0 8px 10px #0003)}
+@keyframes grow{from{transform:scale(0) rotate(-40deg)}to{transform:scale(1) rotate(0)}}
+.name{background:#ffe3ef;padding:2px 14px;border-radius:20px;direction:ltr;display:inline-block}
+.fall{position:fixed;top:-40px;font-size:26px;animation:fall linear forwards;pointer-events:none;z-index:70}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="msg" class="pop">یه چیزی برات آوردم... 🤭<br>بزن روی کادو ببینیم چیه!</div>
+  <div id="stage">
+    <div class="base"></div><div class="rib-v"></div>
+    <div class="lid"></div><div class="rib-v2"></div><div class="bow">🎀</div>
+    <div class="tape t1"></div><div class="tape t2"></div><div class="tape t3"></div><div class="tape t4"></div>
+    <div class="cutline" id="cl"></div><div class="scis" id="sc">✂️</div>
+  </div>
+  <button id="btn"></button>
+</div>
+<div id="white"></div>
+<div id="final">
+  <div class="bq">💐</div>
+  <h1>تولدت مبارک <span class="name">set1_tk</span> 🎂</h1>
+  <p>🥳 امیدوارم سالی که پیشِ رو داری پر از خنده، خبرای خوب و آدمای قشنگ باشه. تو لایق بهترین‌هایی! 😍🎉<br>«یه شب که هزار شب نمی‌شه»... ولی امشب مال توئه! 🌹✨</p>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const msg=$('#msg'),stage=$('#stage'),btn=$('#btn');
+const say=t=>{msg.innerHTML=t;msg.classList.remove('pop');void msg.offsetWidth;msg.classList.add('pop')};
+const lines=[
+ 'اوه اوه! یه تیکه نوار چسب کنده شد 😏<br>ادامه بده، کنجکاو شدی؟ 👀',
+ 'یه شب که هزار شب نمی‌شه... 🌙<br>انرژیتو شارژ کن، بزن بعدی! ⚡😎',
+ 'نصفه‌ش رفت! 🤩 قول می‌دم ارزششو داره...<br>ولی هنوز نه! 🤫🤭',
+ 'آخرین نوار چسب... 😈<br>دل‌تو بزن به دریا! 🤪'
+];
+let taps=0,cut=0,busy=false;
+stage.addEventListener('click',()=>{
+  if(taps<4){
+    document.querySelectorAll('.tape')[taps].classList.add('gone');
+    stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');
+    say(lines[taps]);taps++;
+    if(taps===4)setTimeout(()=>{
+      say('حالا وقتشه! 🎯<br>روی ✂️ بزن تا خط‌چینو ببره،<br>برش دار و ببر اینجارو! 😁');
+      $('#cl').style.display='block';$('#sc').style.display='block';
+    },1800);
+  }else if(!busy){
+    cut++;const p=Math.min(cut*25,100);
+    $('#sc').style.right=(-12+p*1.05)+'%';
+    if(cut<4)say(['شروع شد! کیک‌ تیز ✂️😆','نصفه رسیدیم! ✂️🤩','یکم دیگه... ✂️😬'][cut-1]);
+    else{busy=true;say('بریدی!!! 🎉✂️🥳');
+      setTimeout(()=>{stage.classList.add('open');$('#cl').style.display=$('#sc').style.display='none';
+        setTimeout(()=>{say('خب، حالا <b>چشماتو ببند</b> 🙈<br>و تا دکمه رو زدی بازشون نکن! 🤫');btn.textContent='بستم 😌';btn.style.display='block';},1000)},900);
+    }
+  }
+});
+btn.onclick=()=>{
+  btn.style.display='none';say('چشمات بسته‌ست؟ 😴');
+  setTimeout(()=>$('#white').classList.add('on'),400);
+  setTimeout(()=>{$('#final').classList.add('show');rain();},3000);
+};
+function rain(){
+  const e=['🌸','🌹','🌷','🎉','💖','🌺','✨','🎊'];
+  setInterval(()=>{const d=document.createElement('div');d.className='fall';
+    d.textContent=e[Math.random()*e.length|0];d.style.left=Math.random()*100+'vw';
+    d.style.animationDuration=(3+Math.random()*3)+'s';document.body.appendChild(d);
+    setTimeout(()=>d.remove(),6500)},250);
+}
+</script>
+</body>
+</html>
